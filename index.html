@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{{ url_for('add') }}" class="btn btn-primary mb-3">➕ Agregar libro</a>
+<a href="{{ url_for('search') }}" class="btn btn-secondary mb-3">🔍 Buscar</a>
+
+<table class="table table-striped">
+  <thead><tr><th>Título</th><th>Autor</th><th>Género</th><th>Estado</th><th>Acciones</th></tr></thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <td>{{ book.title }}</td>
+      <td>{{ book.author }}</td>
+      <td>{{ book.genre }}</td>
+      <td>{{ book.status }}</td>
+      <td>
+        <a href="{{ url_for('edit', book_id=book.id) }}" class="btn btn-sm btn-warning">✏️ Editar</a>
+        <a href="{{ url_for('delete', book_id=book.id) }}" class="btn btn-sm btn-danger">🗑️ Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
